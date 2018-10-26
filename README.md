@@ -35,10 +35,10 @@ To access the system endpoints, enter each URL:
 
 **Add survivors to the database**
 
-method: POST (create) 
-endpoint: /survivor/
+method: POST (create) <br />
+endpoint: /survivor/ <br />
 input fields:
-	{
+```	{
 		"name": "Arthur",
 		"age": 29,
 		"gender": "Male",
@@ -46,37 +46,37 @@ input fields:
 		"inventory": ["Flashlight", "Smartphone", "Water-bottle"],
 		"inventoryLocked": false
 	}
-
+```
 **Update survivor location**
 
-method: PUT (update)
-endpoint: /survivor/location
+method: PUT (update) <br />
+endpoint: /survivor/location <br />
 input fields:
-	{
+```	{
 		"name": "Arthur",
 		"lastLocation": [-16.682199,-49.2795521]
 	}
-
+```
 **Flag survivor as infected**
 
 **Trade items**
 
 **Reports**
 
-*Percentage of infected survivors*
-method: GET (read)
+*Percentage of infected survivors* <br />
+method: GET (read) <br />
 endpoint: /survivor/infected
 
-*Percentage of non-infected survivors*
-method: GET (read)
-endpoint: /survivor/noninfected
+*Percentage of non-infected survivors* <br />
+method: GET (read) <br />
+endpoint: /survivor/noninfected 
 
-*Average amount of each kind of resource by survivor*
-method: GET (read)
+*Average amount of each kind of resource by survivor* <br />
+method: GET (read) <br />
 endpoint: /survivor/resources
 
-*Points lost because of infected survivor*
-method: GET (read)
+*Points lost because of infected survivor* <br />
+method: GET (read) <br />
 endpoint: /points/lost
 
 ---
