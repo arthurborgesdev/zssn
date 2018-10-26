@@ -47,12 +47,13 @@ input fields:
 		"inventory": ["Water", "Food", "Ammunition"]
 	}
 ```
-Upon registration of the survivor, the system set the "inventoryLocked" property to **false**:
+Upon registration of the survivor, the system will set the "inventoryLocked" property to **false**:
 ```
 	{
 		"inventoryLocked": false
 	}
 ```
+
 **Update survivor location**
 
 method: PUT (update)  
@@ -64,7 +65,33 @@ input fields:
 		"lastLocation": [-16.682199,-49.2795521]
 	}
 ```
+
 **Flag survivor as infected**
+
+method: PUT (update)  
+endpoint: /flag/infection  
+input fields:  
+```	
+	{
+		"name": "Arthur"
+	}
+```
+
+After flagging the survivor as infected, the system will increment a field in that survivor database entry:
+
+```	
+	{
+		"name": "Arthur",
+		"age": 29,
+		"gender": "Male",
+		"lastLocation": [-16.6722709,-49.2689362],
+		"inventory": ["Water", "Food", "Ammunition"],
+		"inventoryLocked": false,
+		"infectionFlagPoints": 1
+	}
+```
+
+After 3 flags, the "inventoryLocked" field will be set to **true**, stating that the survivor is contaminated by the virus.
 
 **Trade items**
 
@@ -73,19 +100,19 @@ input fields:
 *Percentage of infected survivors*  
 
 method: GET (read)  
-endpoint: /survivor/infected
+endpoint: /survivors/infected
 
 
 *Percentage of non-infected survivors*  
 
 method: GET (read)  
-endpoint: /survivor/noninfected  
+endpoint: /survivors/noninfected  
 
 
 *Average amount of each kind of resource by survivor*  
 
 method: GET (read)  
-endpoint: /survivor/resources  
+endpoint: /average/resources  
 
 
 *Points lost because of infected survivor*  
