@@ -15,7 +15,7 @@ This system was created using the stack "MEN" (MongoDB, ExpressJS, NodeJS) to su
 
 ## System start
 
-After everything is installed, start MongoDB:
+After everything is installed, start MongoDB and run the start script:
 
 1. On a **Terminal**, run the command *mongod*;
 2. Go to the **zssn** folder and open it in a **Terminal**;
@@ -23,18 +23,60 @@ After everything is installed, start MongoDB:
 
 ---
 
+## System follow-up
+
+After the system is started, open **Postman** to reach the endpoints.
+
+---
+
 ## System endpoints
 
-To access the system endpoints, enter on each URL:
+To access the system endpoints, enter each URL:
 
 **Add survivors to the database**
 
+method: POST (create) 
+endpoint: /survivor/
+input fields:
+	{
+		"name": "Arthur",
+		"age": 29,
+		"gender": "Male",
+		"lastLocation": [-16.6722709,-49.2689362],
+		"inventory": ["Flashlight", "Smartphone", "Water-bottle"],
+		"inventoryLocked": false
+	}
+
 **Update survivor location**
+
+method: PUT (update)
+endpoint: /survivor/location
+input fields:
+	{
+		"name": "Arthur",
+		"lastLocation": [-16.682199,-49.2795521]
+	}
 
 **Flag survivor as infected**
 
 **Trade items**
 
 **Reports**
+
+*Percentage of infected survivors*
+method: GET (read)
+endpoint: /survivor/infected
+
+*Percentage of non-infected survivors*
+method: GET (read)
+endpoint: /survivor/noninfected
+
+*Average amount of each kind of resource by survivor*
+method: GET (read)
+endpoint: /survivor/resources
+
+*Points lost because of infected survivor*
+method: GET (read)
+endpoint: /points/lost
 
 ---
