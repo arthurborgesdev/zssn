@@ -40,17 +40,19 @@ endpoint: /survivor/
 input fields:  
 ```	
 	{
-		"name": "Arthur",
-		"age": 29,
-		"gender": "Male",
-		"lastLocation": [-16.6722709,-49.2689362],
-		"inventory": ["Water", "Food", "Ammunition"]
+		name: Arthur,
+		age: 29,
+		gender: Male,
+		lastLocation.longitude: -16.6722709,
+		lastLocation.latitude: -49.2689362,
+		inventory: Water, Food, Ammunition
 	}
 ```
-Upon registration of the survivor, the system will set the "inventoryLocked" property to **false**:
+Upon registration of the survivor, the system will set the "inventoryLocked" property to **false**, and "infectionFlagPoints" to 0:
 ```
 	{
-		"inventoryLocked": false
+		"inventoryLocked": false,
+		"infectionFlagPoints": 0
 	}
 ```
 
@@ -61,8 +63,9 @@ endpoint: /survivor/location
 input fields:  
 ```	
 	{
-		"name": "Arthur",
-		"lastLocation": [-16.682199,-49.2795521]
+		name: Arthur,
+		lastLocation.longitude: -16.682199,
+		lastLocation.latitude: -49.2795521,
 	}
 ```
 
@@ -73,7 +76,7 @@ endpoint: /flag/infection
 input fields:  
 ```	
 	{
-		"name": "Arthur"
+		name: Arthur
 	}
 ```
 
@@ -81,10 +84,13 @@ After flagging the survivor as infected, the system will increment a field in th
 
 ```	
 	{
-		"name": "Arthur",
-		"age": 29,
-		"gender": "Male",
-		"lastLocation": [-16.6722709,-49.2689362],
+		name: "Arthur",
+		age: 29,
+		gender: "Male",
+		"lastLocation": {
+			"longitude": -16.682199,
+			"latitude": -49.2795521
+		},
 		"inventory": ["Water", "Food", "Ammunition"],
 		"inventoryLocked": false,
 		"infectionFlagPoints": 1
