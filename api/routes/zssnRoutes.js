@@ -10,6 +10,9 @@ module.exports = function(app) {
 	app.route('/flag/infection')
 		.put(zssn.flagSurvivorAsInfected);
 
+	app.route('/trade/items')
+		.put(zssn.tradeItems);
+
 	app.route('/survivors/infected')
 		.get(zssn.readPercentageOfNonSurvivors);
 

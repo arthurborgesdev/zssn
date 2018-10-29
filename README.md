@@ -45,9 +45,13 @@ input fields:
 		gender: Male,
 		lastLocation.longitude: -16.6722709,
 		lastLocation.latitude: -49.2689362,
-		inventory: Water, Food, Ammunition
+		inventory.water: 4,
+		inventory.food: 4,
+		inventory.medication: 4,
+		inventory.ammunition: 1,
 	}
 ```
+
 Upon registration of the survivor, the system will set the "inventoryLocked" property to **false**, and "infectionFlagPoints" to 0:
 ```
 	{
@@ -100,6 +104,23 @@ After flagging the survivor as infected, the system will increment a field in th
 After 3 flags, the "inventoryLocked" field will be set to **true**, stating that the survivor is contaminated by the virus.
 
 **Trade items**
+
+method: PUT (update)  
+endpoint: /trade/items
+input fields:  
+```	
+	{
+		sender.name: Andressa,
+		sender.medication: 3,
+		sender.ammunition: 2,
+		receiver.name: Lyanna,
+		receiver.water: 2
+	}
+```
+
+The system will calculate the sender and receiver total of points. If they were equal, the system will proceed to the items exchange. If they're not, it will responde with the following message:
+
+`Can't trade because the items points sum do not match!`
 
 **Reports**
 
