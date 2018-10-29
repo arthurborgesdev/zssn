@@ -108,12 +108,21 @@ After 3 flags, the "inventoryLocked" field will be set to **true**, stating that
 method: GET (read)  
 endpoint: /survivors/infected
 
+The system will return the percentage of Infected Survivors:
+e.g.:
+
+` "40.00%" `
+
 
 *Percentage of non-infected survivors*  
 
 method: GET (read)  
 endpoint: /survivors/noninfected  
 
+The system will return the percentage of Non-Infected Survivors:
+e.g.:
+
+` "60.00%" `
 
 *Average amount of each kind of resource by survivor*  
 

@@ -27,8 +27,22 @@ var SurvivorSchema = new Schema({
 		}
 	},
 	inventory: {
-		type: Array,
-		//enum: ['Water', 'Food', 'Medication', 'Ammunition']
+		water: {
+			type: Number,
+			required: true
+		},
+		food: {
+			type: Number,
+			required: true
+		},
+		medication: {
+			type: Number,
+			required: true
+		},
+		ammunition: {
+			type: Number,
+			required: true
+		}
 	},
 	inventoryLocked: {
 		type: Boolean,
