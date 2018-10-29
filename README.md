@@ -109,6 +109,7 @@ method: GET (read)
 endpoint: /survivors/infected
 
 The system will return the percentage of Infected Survivors:
+
 e.g.:
 
 ` "40.00%" `
@@ -120,6 +121,7 @@ method: GET (read)
 endpoint: /survivors/noninfected  
 
 The system will return the percentage of Non-Infected Survivors:
+
 e.g.:
 
 ` "60.00%" `
@@ -129,6 +131,21 @@ e.g.:
 method: GET (read)  
 endpoint: /average/resources  
 
+The system will return the average of each kind of resource by survivor:
+
+e.g.:
+
+```
+[
+    {
+        "_id": "averageOfResources",
+        "water": 3.25,
+        "food": 3.25,
+        "medication": 3,
+        "ammunition": 1.25
+    }
+]
+```
 
 *Points lost because of infected survivor*  
 

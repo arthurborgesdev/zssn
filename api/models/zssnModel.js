@@ -26,6 +26,7 @@ var SurvivorSchema = new Schema({
 			required: true
 		}
 	},
+	// organized inventory as an Object to facilitate reports and trades
 	inventory: {
 		water: {
 			type: Number,

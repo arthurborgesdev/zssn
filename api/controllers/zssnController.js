@@ -89,7 +89,7 @@ exports.readPercentageOfSurvivors = function(req, res) {
 		Survivor.count({inventoryLocked: false}, function (err, nonInfectedCount) {
 			if (err) res.send(err);
 			var nonInfectedRegistered = nonInfectedCount;
-			
+
 			percentageOfNonInfected = ((nonInfectedRegistered / totalRegistered) * 100 ).toFixed(2) + "%";
 
 			res.json(percentageOfNonInfected);
@@ -98,6 +98,25 @@ exports.readPercentageOfSurvivors = function(req, res) {
 };
 
 // readAverageOfResources
+exports.readAverageOfResources = function(req, res) {
+	Survivor.aggregate([
+		{ $match: { inventoryLocked: false } }, // only match non-infected survivors
+		
+		{ 
+			$group: { 
+				_id: "averageOfResources", 
+				water: { $avg: "$inventory.water" }, 
+				food: { $avg: "$inventory.food" },
+				medication: { $avg: "$inventory.medication"},
+				ammunition: { $avg: "$inventory.ammunition"} 
+			} 
+		}],
 
+		function(err, result) {
+			if (err) res.send(err);
+			res.json(result);
+		}
+	);
+};
 
 // readPointsLost

@@ -16,10 +16,10 @@ module.exports = function(app) {
 	app.route('/survivors/noninfected')
 		.get(zssn.readPercentageOfSurvivors);
 
-	/*
 	app.route('/average/resources')
 		.get(zssn.readAverageOfResources);
 
+	/*
 	app.route('/points/lost')
 		.get(zssn.readPointsLost);
 	*/
