@@ -9,21 +9,21 @@ var mongoose = require('mongoose');
 var Survivor = require('./api/models/zssnModel');
 var bodyParser = require('body-parser');
 
+var routes = require('./api/routes/zssnRoutes');
 //------------------------------------------
 
 
 // Mongoose Connection and BodyParser Middleware
 
-
 mongoose.connect('mongodb://localhost/zssn');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
 //------------------------------------------
 
 
-// ----- Routes requiring and settings -----
+// ----------- Routes loading --------------
 
-var routes = require('./api/routes/zssnRoutes');
 routes(app);
 
 // -----------------------------------------

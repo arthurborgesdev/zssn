@@ -3,12 +3,10 @@ module.exports = function(app) {
 
 	app.route('/survivor')
 		.post(zssn.addSurvivor);
-
 	
 	app.route('/survivor/location')
 		.put(zssn.updateSurvivorLocation);
 
-	/*
 	app.route('/flag/infection')
 		.put(zssn.flagSurvivorAsInfected);
 
@@ -18,6 +16,7 @@ module.exports = function(app) {
 	app.route('/survivors/noninfected')
 		.get(zssn.readPercentageOfSurvivors);
 
+	/*
 	app.route('/average/resources')
 		.get(zssn.readAverageOfResources);
 
