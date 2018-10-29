@@ -19,8 +19,6 @@ module.exports = function(app) {
 	app.route('/average/resources')
 		.get(zssn.readAverageOfResources);
 
-	/*
 	app.route('/points/lost')
 		.get(zssn.readPointsLost);
-	*/
 };

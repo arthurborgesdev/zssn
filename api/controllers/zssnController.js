@@ -120,3 +120,28 @@ exports.readAverageOfResources = function(req, res) {
 };
 
 // readPointsLost
+exports.readPointsLost = function(req, res) {
+	Survivor.aggregate([
+		{ $match: { inventoryLocked: true } }, // only match infected survivors
+
+		{
+			$group: {
+				_id: "pointsLost",
+				water:  { $sum:"$inventory.water" },
+				food:  { $sum:"$inventory.food" },
+				medication:  { $sum:"$inventory.medication" },
+				ammunition:  { $sum:"$inventory.ammunition" },
+			} 	
+		}
+	], function(err, result) {
+		if (err) res.send(err);
+		
+		var waterPoints = result[0].water * 4;
+		var foodPoints = result[0].food * 3;
+		var medicationPoints = result[0].medication * 2;
+		var ammunitionPoints = result[0].ammunition * 1;
+
+		totalLostPoints = waterPoints + foodPoints + medicationPoints + ammunitionPoints;
+		res.json(totalLostPoints);
+	});
+};

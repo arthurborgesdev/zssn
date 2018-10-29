@@ -152,4 +152,10 @@ e.g.:
 method: GET (read)  
 endpoint: /points/lost  
 
+The system will return the total points lost by all the non survivors:
+
+e.g.:
+
+`54`
+
 ---
