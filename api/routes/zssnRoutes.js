@@ -1,5 +1,6 @@
 module.exports = function(app) {
 	var zssn = require('../controllers/zssnController');
+	var zssnTrade = require('../controllers/zssnTradeController');
 
 	app.route('/survivor')
 		.post(zssn.addSurvivor);
@@ -11,7 +12,7 @@ module.exports = function(app) {
 		.put(zssn.flagSurvivorAsInfected);
 
 	app.route('/trade/items')
-		.put(zssn.tradeItems);
+		.put(zssnTrade.tradeItems);
 
 	app.route('/survivors/infected')
 		.get(zssn.readPercentageOfNonSurvivors);
