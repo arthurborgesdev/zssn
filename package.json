@@ -23,6 +23,7 @@
   "homepage": "https://bitbucket.org/arthurborges/zssn#readme",
   "dependencies": {
     "express": "^4.16.4",
+    "mocha": "^5.2.0",
     "mongoose": "^5.3.7"
   },
   "devDependencies": {

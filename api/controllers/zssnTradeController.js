@@ -13,10 +13,10 @@ exports.tradeItems = function(req, res) {
 
 	// Object created for later use in trade items part
 	var senderItems = {
-		water: senderWater,
-		food: senderFood,
-		medication: senderMedication,
-		ammunition: senderAmmunition
+		"inventory.water": senderWater,
+		"inventory.food": senderFood,
+		"inventory.medication": senderMedication,
+		"inventory.ammunition": senderAmmunition
 	}
 
 	// Remove undefined fields from senderItems object
@@ -59,10 +59,10 @@ exports.tradeItems = function(req, res) {
 
 	// Object created for later use in trade items part
 	var receiverItems = {
-		water: receiverWater,
-		food: receiverFood,
-		medication: receiverMedication,
-		ammunition: receiverAmmunition
+		"inventory.water": receiverWater,
+		"inventory.food": receiverFood,
+		"inventory.medication": receiverMedication,
+		"inventory.ammunition": receiverAmmunition
 	}
 
 	// Remove undefined fields from receiverItems object
@@ -105,10 +105,11 @@ exports.tradeItems = function(req, res) {
 	
 		// Trying to do database save of sent itens from survivor A to B (Itens are withdrawn of A's inventory)
 		for (var key in sentItems) { // A's inventory
-			newKey = "inventory." + key;
+			//newKey = "inventory." + key;
+			console.log(key);
 			Survivor.findOneAndUpdate( 
 				{ name: senderName }, // A
-				{ $inc: { newKey: -sentItems[key]} }, // This part is failing without errors
+				{ $inc: { key: -sentItems[key]} }, // This part is failing without errors
 				{ new: true },
 				function(err, result) {
 					if (err) res.send(err);
@@ -118,10 +119,10 @@ exports.tradeItems = function(req, res) {
 
 		// Trying to do database save of received itens from survivor B to A (Itens are put in A's inventory)
 		for (var key in receivedItems) { // B's inventory 
-			newKey = "inventory." + key;
+			//newKey = "inventory." + key;
 			Survivor.findOneAndUpdate( 
 				{ name: senderName }, // A
-				{ $inc: { newKey: receivedItems[key]} }, // This part is failing without errors
+				{ $inc: { key: receivedItems[key]} }, // This part is failing without errors
 				{ new: true },
 				function(err, result) {
 					if (err) res.send(err);
@@ -131,10 +132,10 @@ exports.tradeItems = function(req, res) {
 
 		// Trying to do database save of sent itens from survivor B to A (Itens are withdrawn of B's inventory)
 		for (var key in receivedItems) { // B's inventory
-			newKey = "inventory." + key;
+			//newKey = "inventory." + key;
 			Survivor.findOneAndUpdate( 
 				{ name: receiverName }, // B
-				{ $inc: { newKey: -receivedItems[key]} }, // This part is failing without errors
+				{ $inc: { key: -receivedItems[key]} }, // This part is failing without errors
 				{ new: true },
 				function(err, result) {
 					if (err) res.send(err);
@@ -144,10 +145,10 @@ exports.tradeItems = function(req, res) {
 
 		// Trying to do database save of received itens from survivor A to B (Itens are put in B's inventory)
 		for (var key in sentItems) { // A's inventory
-			newKey = "inventory." + key;
+			//newKey = "inventory." + key;
 			Survivor.findOneAndUpdate( 
 				{ name: receiverName }, // B
-				{ $inc: { newKey: sentItems[key]} }, // This part is failing without errors
+				{ $inc: { key: sentItems[key]} }, // This part is failing without errors
 				{ new: true },
 				function(err, result) {
 					if (err) res.send(err);

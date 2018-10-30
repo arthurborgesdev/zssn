@@ -15,7 +15,7 @@ This system was created using the stack "MEN" (MongoDB, ExpressJS, NodeJS) to su
 
 ## System start
 
-After everything is installed, start MongoDB and run the start script:
+After everything is installed(*and after running npm install*), start MongoDB and run the start script:
 
 1. On a **Terminal**, run the command *mongod*;
 2. Go to the **zssn** folder and open it in a **Terminal**;
