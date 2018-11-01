@@ -106,7 +106,7 @@ After 3 flags, the "inventoryLocked" field will be set to **true**, stating that
 **Trade items**
 
 method: PUT (update)  
-endpoint: /trade/items
+endpoint: /trade/items  
 input fields:  
 ```	
 	{
@@ -118,7 +118,7 @@ input fields:
 	}
 ```
 
-The system will calculate the sender and receiver total of points. If they were equal, the system will proceed to the items exchange. If they're not, it will responde with the following message:
+The system will calculate the sender and receiver total of points. If they were equal, the system will proceed to the items exchange. If they're not, it will respond with the following message:
 
 `Can't trade because the items points sum do not match!`
 
