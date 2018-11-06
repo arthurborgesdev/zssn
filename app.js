@@ -6,10 +6,10 @@ var app = express();
 var port = process.env.PORT || 3000;
 
 var mongoose = require('mongoose');
-var Survivor = require('./api/models/zssnModel');
+var Survivor = require('./api/models/survivor');
 var bodyParser = require('body-parser');
 
-var routes = require('./api/routes/zssnRoutes');
+var routes = require('./api/routes/route');
 //------------------------------------------
 
 

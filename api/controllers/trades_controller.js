@@ -75,7 +75,7 @@ exports.tradeItems = function(req, res) {
 
 	// Validate fields (convert null and undefined to 0 )
 	if (receiverWater === undefined || receiverWater === null) {
-		senderWater = 0;
+		receiverWater = 0;
 	}
 
 	if (receiverFood === undefined || receiverFood === null) {
@@ -109,7 +109,7 @@ exports.tradeItems = function(req, res) {
 			console.log(key);
 			Survivor.findOneAndUpdate( 
 				{ name: senderName }, // A
-				{ $inc: { key: -sentItems[key]} }, // This part is failing without errors
+				{ $inc: { [key]: -sentItems[key]} }, // This part is failing without errors
 				{ new: true },
 				function(err, result) {
 					if (err) res.send(err);
@@ -122,7 +122,7 @@ exports.tradeItems = function(req, res) {
 			//newKey = "inventory." + key;
 			Survivor.findOneAndUpdate( 
 				{ name: senderName }, // A
-				{ $inc: { key: receivedItems[key]} }, // This part is failing without errors
+				{ $inc: { [key]: receivedItems[key]} }, // This part is failing without errors
 				{ new: true },
 				function(err, result) {
 					if (err) res.send(err);
@@ -135,7 +135,7 @@ exports.tradeItems = function(req, res) {
 			//newKey = "inventory." + key;
 			Survivor.findOneAndUpdate( 
 				{ name: receiverName }, // B
-				{ $inc: { key: -receivedItems[key]} }, // This part is failing without errors
+				{ $inc: { [key]: -receivedItems[key]} }, // This part is failing without errors
 				{ new: true },
 				function(err, result) {
 					if (err) res.send(err);
@@ -148,7 +148,7 @@ exports.tradeItems = function(req, res) {
 			//newKey = "inventory." + key;
 			Survivor.findOneAndUpdate( 
 				{ name: receiverName }, // B
-				{ $inc: { key: sentItems[key]} }, // This part is failing without errors
+				{ $inc: { [key]: sentItems[key]} }, // This part is failing without errors
 				{ new: true },
 				function(err, result) {
 					if (err) res.send(err);

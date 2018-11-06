@@ -1,6 +1,6 @@
 module.exports = function(app) {
-	var zssn = require('../controllers/zssnController');
-	var zssnTrade = require('../controllers/zssnTradeController');
+	var zssn = require('../controllers/survivors_controller');
+	var zssnTrade = require('../controllers/trades_controller');
 
 	app.route('/survivor')
 		.post(zssn.addSurvivor);
