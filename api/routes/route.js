@@ -1,28 +1,29 @@
 module.exports = function(app) {
-	var zssn = require('../controllers/survivors_controller');
-	var zssnTrade = require('../controllers/trades_controller');
+	var survivorController = require('../controllers/survivors_controller');
+	var tradeController = require('../controllers/trades_controller');
 
 	app.route('/survivor')
-		.post(zssn.addSurvivor);
+		.post(survivorController.addSurvivorController);
 	
 	app.route('/survivor/location')
-		.put(zssn.updateSurvivorLocation);
+		.put(survivorController.updateSurvivorLocationController);
 
 	app.route('/flag/infection')
-		.put(zssn.flagSurvivorAsInfected);
+		.put(survivorController.flagSurvivorAsInfectedController);
 
 	app.route('/trade/items')
-		.put(zssnTrade.tradeItems);
+		.put(tradeController.tradeItemsController);
 
 	app.route('/survivors/infected')
-		.get(zssn.readPercentageOfNonSurvivors);
+		.get(survivorController.readPercentageOfNonSurvivorsController);
 
 	app.route('/survivors/noninfected')
-		.get(zssn.readPercentageOfSurvivors);
+		.get(survivorController.readPercentageOfSurvivorsController);
 
 	app.route('/average/resources')
-		.get(zssn.readAverageOfResources);
+		.get(survivorController.readAverageOfResourcesController);
 
 	app.route('/points/lost')
-		.get(zssn.readPointsLost);
+		.get(survivorController.readPointsLostController);
+	
 };

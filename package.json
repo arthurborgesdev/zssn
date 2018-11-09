@@ -23,10 +23,12 @@
   "homepage": "https://bitbucket.org/arthurborges/zssn#readme",
   "dependencies": {
     "express": "^4.16.4",
-    "mocha": "^5.2.0",
+    "lodash": "^4.17.11",
     "mongoose": "^5.3.7"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
     "nodemon": "^1.18.5"
   }
 }

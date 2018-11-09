@@ -10,12 +10,21 @@ var Survivor = require('./api/models/survivor');
 var bodyParser = require('body-parser');
 
 var routes = require('./api/routes/route');
+var config = require('./config');
 //------------------------------------------
 
 
 // Mongoose Connection and BodyParser Middleware
 
-mongoose.connect('mongodb://localhost/zssn');
+var envVar = config.mongoURI[app.settings.env];
+mongoose.connect(envVar, function(err, res) {
+	if (err) { 
+		console.log('Error connecting to the database. ' + err); 
+	} else {
+		console.log('Connected to Database: ' + envVar);
+	}
+});
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
@@ -35,3 +44,5 @@ app.listen(port);
 console.log(`Zombie Survival Social Network Server listening on port ${port}!`);
 
 // -----------------------------------------
+
+module.exports = app;
