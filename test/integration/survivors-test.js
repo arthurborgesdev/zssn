@@ -126,7 +126,7 @@ describe('Actions performed in survivors service', function() {
 				})
 				.end(function(err, res) {
 					res.should.have.status(200);
-					console.log(res.body);
+					//console.log(res.body);
 					res.body.inventory.water.should.equal(28);
 					res.body.inventory.food.should.equal(30);
 					res.body.inventory.medication.should.equal(33);

@@ -1,4 +1,3 @@
-var _ = require('lodash');
 var mongoose = require('mongoose');
 var Survivor = mongoose.model('Survivor');
 
@@ -110,7 +109,7 @@ exports.tradeItems = function(req, res) {
 		// Database saving of sent itens from survivor A to B (Itens are withdrawn of A's inventory)
 		for (var key in sentItems) { // A's inventory
 			//newKey = "inventory." + key;
-			console.log(key);
+			//console.log(key);
 			Survivor.findOneAndUpdate( 
 				{ name: senderName }, // A
 				{ $inc: { [key]: -sentItems[key]} }, 
@@ -148,7 +147,7 @@ exports.tradeItems = function(req, res) {
 		}
 
 		var finalResult = [];
-		var sentItemsPropsLength = _.size(sentItems);
+		var sentItemsPropsLength = Object.keys(sentItems).length;
 		//console.log(sentItemsPropsLength);
 		// Database saving of received itens from survivor A to B (Itens are put in B's inventory)
 		for (var key in sentItems) { // A's inventory

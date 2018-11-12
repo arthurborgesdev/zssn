@@ -23,7 +23,7 @@
   "homepage": "https://bitbucket.org/arthurborges/zssn#readme",
   "dependencies": {
     "express": "^4.16.4",
-    "lodash": "^4.17.11",
+    "joi": "^14.0.6",
     "mongoose": "^5.3.7"
   },
   "devDependencies": {

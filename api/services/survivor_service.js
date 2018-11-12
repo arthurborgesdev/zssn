@@ -1,69 +1,94 @@
 var mongoose = require('mongoose');
 var Survivor = mongoose.model('Survivor');
-
-// perhaps, here I have to require validators
 var survivorValidator = require('../validators/survivor_validator');
 
 // addSurvivor
 exports.addSurvivor = function(req, res) {
-	var newSurvivor = new Survivor(req.body);
-	newSurvivor.save(function(err, survivor) {
-		if (err) res.send(err);
-		res.json(survivor);
-	});
+
+	survivorValidator.addSurvivorValidator(req, res, function() {
+
+		if(req.addSurvivorObj == null) {
+			res.json({ErrorMessage: req.errorMessage});
+		} else {
+			var newSurvivor = new Survivor(req.addSurvivorObj);
+			newSurvivor.save(function(err, survivor) {
+				if (err) res.send(err);
+				res.json(survivor);
+			});
+
+		}
+	})
+
 };
 
 
 // updateSurvivorLocation
 exports.updateSurvivorLocation = function(req, res) {
-	
-	var nameId = req.body.name;
-	var longitude = req.body["lastLocation.longitude"];
-	var latitude = req.body["lastLocation.latitude"];
 
-	Survivor.findOneAndUpdate(
-		{ name: nameId }, 
-		{ $set: {
-			"lastLocation.longitude": longitude,
-			"lastLocation.latitude": latitude
-		}}, { new: true },
-		function(err, survivor) {
-			if (err) res.send(err);
-			res.json(survivor);
-	});	
+	// call validator here with req params
+
+	survivorValidator.updateSurvivorLocationValidator(req, res, function() {
+
+		if (req.updateSurvivorLoc == null) {
+			console.log(req.updateSurvivorLoc);
+			res.json({ errorMessage: "The survivor can't change location because it's infected"});
+
+		} else {
+			Survivor.findOneAndUpdate(
+				{ name: req.updateSurvivorLoc.nameId }, 
+				{ $set: {
+					"lastLocation.longitude": req.updateSurvivorLoc.longitude,
+					"lastLocation.latitude": req.updateSurvivorLoc.latitude
+				}}, { new: true },
+				function(err, survivor) {
+					if (err) res.send(err);
+					res.json(survivor);
+			})
+		}
+	})	
 };
+
 
 // flagSurvivorAsInfected
 exports.flagSurvivorAsInfected = function(req, res) {
 	
-	var nameId = req.body.name;
 
-	Survivor.findOneAndUpdate(
-		{ name: nameId }, 
-		{ $inc: {
-			infectionFlagPoints: 1
-		}}, { new: true },
-		function(err, survivor) {
-			if (err) res.send(err);
+	survivorValidator.flagSurvivorValidator(req, res, function() {
 
-			var infectionFlagPoints = survivor.infectionFlagPoints;
-			console.log(infectionFlagPoints);
 
-			if (infectionFlagPoints >= 3) {
-				Survivor.findOneAndUpdate(
-					{ name: nameId },
-					{ $set: { inventoryLocked: true } },
-					{ new: true },
-					function(err, survivor) {
-						if (err) res.send(err);
-						res.json(survivor);
+		if (req.errorMessage) {
+			//res.json({message: "The survivor is already a zombie!"})
+			res.json({ErrorMessage: req.errorMessage})
+		} else {
+			console.log("auha");
+			Survivor.findOneAndUpdate(
+				{ name: req.survivorName }, 
+				{ $inc: {
+					infectionFlagPoints: 1
+				}}, { new: true },
+				function(err, survivor) {
+					if (err) res.send(err);
+
+					var infectionFlagPoints = survivor.infectionFlagPoints;
+					//console.log(infectionFlagPoints);
+
+					if (infectionFlagPoints >= 3) {
+						Survivor.findOneAndUpdate(
+							{ name: req.survivorName },
+							{ $set: { inventoryLocked: true } },
+							{ new: true },
+							function(err, survivor) {
+								if (err) res.send(err);
+								res.json(survivor);
+							}
+						)
+					} else {
+						res.json(survivor)
 					}
-				)
-			} else {
-				res.json(survivor)
-			}
+				}
+			);
 		}
-	);	
+	})
 };
 
 // readPercentageOfNonSurvivors
