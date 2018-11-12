@@ -60,7 +60,6 @@ exports.flagSurvivorAsInfected = function(req, res) {
 			//res.json({message: "The survivor is already a zombie!"})
 			res.json({ErrorMessage: req.errorMessage})
 		} else {
-			console.log("auha");
 			Survivor.findOneAndUpdate(
 				{ name: req.survivorName }, 
 				{ $inc: {

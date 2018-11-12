@@ -32,9 +32,10 @@ exports.addSurvivorValidator = function(req, res, next) {
 				req.errorMessage = err;
 				req.addSurvivorObj = null;
 			}	
+			next(req, res);
 		}
 	)
-	next(req, res);
+	
 }
 
 exports.updateSurvivorLocationValidator = function(req, res, next) {
