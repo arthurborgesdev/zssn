@@ -25,8 +25,7 @@ exports.tradeItems = function(req, res) {
 
 		// implement in the future a check to see if the item request/sent exists in each survivor inventory
 		tradeValidator.validateItemsOrInfection(req, res, function() {
-			console.log("hahahahahahahahahahahahahahahahahahahahahahahahahahahahahahahahahahahahahahahahahahahaha");
-			console.log(req.errorMessage);
+
 			if (req.errorMessage) {
 				//res.json({message: "The survivor is already a zombie!"})
 				res.json({ErrorMessage: req.errorMessage})
